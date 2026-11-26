@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero-Fee PDF Invoice Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-toolbar no-print">
+<div class="toolbar-brand">
+<strong>Invoice Studio</strong>
+<span>Zero-Fee Browser Tool</span>
+</div>
+
+<div class="toolbar-actions">
+<label for="currency-select" class="sr-only">Currency</label>
+<select id="currency-select" aria-label="Select currency">
+<option value="₦" selected>₦ NGN</option>
+<option value="$">$ USD</option>
+<option value="€">€ EUR</option>
+<option value="£">£ GBP</option>
+</select>
+
+<button type="button" id="reset-btn" class="btn-ghost">Clear</button>
+<button type="button" id="print-btn" class="btn-primary">Print / Save PDF</button>
+</div>
+</div>
+
+<main class="invoice-sheet" id="main-content">
+<header class="invoice-header">
+<div class="invoice-meta-col">
+<span class="doc-label">INVOICE</span>
+<div class="meta-grid">
+<div class="field-group">
+<label for="invoice-number">Invoice #</label>
+<input type="text" id="invoice-number" value="INV-001">
+</div>
+<div class="field-group">
+<label for="issue-date">Issue Date</label>
+<input type="date" id="issue-date">
+</div>
+<div class="field-group">
+<label for="due-date">Due Date</label>
+<input type="date" id="due-date">
+</div>
+</div>
+</div>
+</header>
+
+<section class="parties-grid" aria-label="Sender and client details">
+<div class="party-box">
+<h2>From (Your Business)</h2>
+<div class="field-group">
+<label for="from-name">Name / Studio</label>
+<input type="text" id="from-name" placeholder="e.g. Chinaza Studio">
+</div>
+<div class="field-group">
+<label for="from-email">Email / Phone</label>
+<input type="text" id="from-email" placeholder="hello@example.com">
+</div>
+<div class="field-group">
+<label for="from-address">Address / Location</label>
+<input type="text" id="from-address" placeholder="Port Harcourt / Remote">
+</div>
+</div>
+
+<div class="party-box">
+<h2>Bill To (Client)</h2>
+<div class="field-group">
+<label for="to-name">Client Name / Company</label>
+<input type="text" id="to-name" placeholder="e.g. Acme Retail Ltd">
+</div>
+<div class="field-group">
+<label for="to-email">Client Email</label>
+<input type="email" id="to-email" placeholder="client@company.com">
+</div>
+<div class="field-group">
+<label for="to-address">Client Address</label>
+<input type="text" id="to-address" placeholder="City, Country">
+</div>
+</div>
+</section>
+
+<section class="items-section" aria-label="Invoice line items">
+<table class="items-table">
+<thead>
+<tr>
+<th scope="col" class="col-desc">Description</th>
+<th scope="col" class="col-qty">Qty</th>
+<th scope="col" class="col-rate">Rate</th>
+<th scope="col" class="col-amount">Amount</th>
+<th scope="col" class="col-action no-print"><span class="sr-only">Remove</span></th>
+</tr>
+</thead>
+<tbody id="items-tbody">
+<tr class="item-row">
+<td>
+<input type="text" name="item-desc[]" class="item-desc" placeholder="e.g. Website design & setup" aria-label="Item description">
+</td>
+<td>
+<input type="number" name="item-qty[]" class="item-qty" min="1" step="1" placeholder="1" aria-label="Quantity">
+</td>
+<td>
+<input type="number" name="item-rate[]" class="item-rate" min="0" step="0.01" placeholder="0.00" aria-label="Unit rate">
+</td>
+<td class="item-total" data-label="Amount">₦0.00</td>
+<td class="no-print">
+<button type="button" class="remove-row-btn" aria-label="Remove item">×</button>
+</td>
+</tr>
+</tbody>
+</table>
+
+<button type="button" id="add-item-btn" class="btn-secondary no-print">+ Add Line Item</button>
+<p id="ally-status" class="sr-only" aria-live="polite"></p>
+</section>
+
+<footer class="invoice-footer">
+<div class="notes-col">
+<div class="field-group">
+<label for="payment-notes">Payment Details &amp; Notes</label>
+<textarea id="payment-notes" rows="4" placeholder="Enter your bank transfer details, payment terms, or thank-you note..."></textarea>
+</div>
+</div>
+
+<div class="summary-col">
+<div class="summary-row">
+<span>Subtotal</span>
+<strong id="subtotal-display">₦50,000.00</strong>
+</div>
+
+<div class="summary-row input-row">
+<label for="tax-rate">Tax (%)</label>
+<input type="number" id="tax-rate" min="0" max="100" step="0.1" value="0">
+</div>
+
+<div class="summary-row input-row">
+<label for="discount-amount">Discount</label>
+<input type="number" id="discount-amount" min="0" step="0.01" value="0">
+</div>
+
+<div class="summary-row total-row">
+<span>Total Due</span>
+<strong id="total-display">₦50,000.00</strong>
+</div>
+</div>
+</footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

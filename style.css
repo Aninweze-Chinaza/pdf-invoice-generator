@@ -1,0 +1,423 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background: #111315;
+color: #18181B;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+line-height: 1.5;
+padding-bottom: 60px;
+}
+
+.sr-only {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+border: 0;
+}
+
+/* TOP TOOLBAR */
+.app-toolbar {
+position: sticky;
+top: 0;
+z-index: 20;
+background: #18181B;
+color: #F4F4F5;
+border-bottom: 1px solid #27272A;
+padding: 14px 24px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 16px;
+flex-wrap: wrap;
+}
+
+.toolbar-brand {
+display: flex;
+align-items: baseline;
+gap: 10px;
+}
+
+.toolbar-brand strong {
+font-size: 16px;
+color: #A3E635;
+}
+
+.toolbar-brand span {
+font-size: 13px;
+color: #A1A1AA;
+}
+
+.toolbar-actions {
+display: flex;
+align-items: center;
+gap: 10px;
+flex-wrap: wrap;
+}
+
+.toolbar-actions select {
+background: #27272A;
+color: #F4F4F5;
+border: 1px solid #3F3F46;
+border-radius: 6px;
+padding: 9px 12px;
+font-size: 14px;
+cursor: pointer;
+}
+
+button {
+font-family: inherit;
+font-size: 14px;
+font-weight: 600;
+border-radius: 6px;
+cursor: pointer;
+transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+outline: 2px solid #A3E635;
+outline-offset: 2px;
+}
+
+.btn-primary {
+background: #A3E635;
+color: #111111;
+border: 1px solid #A3E635;
+padding: 9px 16px;
+}
+
+.btn-primary:hover {
+background: #BEF264;
+}
+
+.btn-secondary {
+background: #F4F4F5;
+color: #18181B;
+border: 1px solid #D4D4D8;
+padding: 9px 14px;
+margin-top: 12px;
+}
+
+.btn-secondary:hover {
+background: #E4E4E7;
+}
+
+.btn-ghost {
+background: transparent;
+color: #E4E4E7;
+border: 1px solid #3F3F46;
+padding: 9px 14px;
+}
+
+.btn-ghost:hover {
+border-color: #71717A;
+}
+
+/* INVOICE SHEET */
+.invoice-sheet {
+max-width: 880px;
+margin: 32px auto 0;
+background: #FFFFFF;
+border-radius: 10px;
+padding: 40px;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.doc-label {
+display: inline-block;
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 2px;
+color: #3F6212;
+background: #ECFCCB;
+padding: 4px 10px;
+border-radius: 4px;
+margin-bottom: 16px;
+}
+
+.meta-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-bottom: 28px;
+}
+
+.parties-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 24px;
+padding: 24px 0;
+border-top: 1px solid #E4E4E7;
+border-bottom: 1px solid #E4E4E7;
+margin-bottom: 28px;
+}
+
+.party-box h2 {
+font-size: 13px;
+text-transform: uppercase;
+letter-spacing: 0.8px;
+color: #52525B;
+margin-bottom: 14px;
+}
+
+.field-group {
+display: flex;
+flex-direction: column;
+gap: 5px;
+margin-bottom: 12px;
+}
+
+.field-group:last-child {
+margin-bottom: 0;
+}
+
+.field-group label {
+font-size: 12px;
+font-weight: 600;
+color: #52525B;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+textarea {
+width: 100%;
+padding: 9px 11px;
+border: 1px solid #D4D4D8;
+border-radius: 6px;
+font-family: inherit;
+font-size: 14px;
+color: #18181B;
+background: #FAFAFA;
+}
+
+input:hover,
+textarea:hover {
+border-color: #A1A1AA;
+}
+
+input:focus,
+textarea:focus {
+background: #FFFFFF;
+}
+
+/* LINE ITEMS TABLE */
+.items-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.items-table th {
+text-align: left;
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 0.6px;
+color: #52525B;
+padding: 0 8px 12px;
+border-bottom: 2px solid #E4E4E7;
+}
+
+.items-table td {
+padding: 10px 8px;
+border-bottom: 1px solid #F4F4F5;
+vertical-align: middle;
+}
+
+.col-qty,
+.col-rate {
+width: 120px;
+}
+
+.col-amount {
+width: 140px;
+text-align: right;
+}
+
+.items-table th.col-amount {
+text-align: right;
+}
+
+.item-total {
+text-align: right;
+font-weight: 700;
+font-variant-numeric: tabular-nums;
+white-space: nowrap;
+}
+
+.remove-row-btn {
+background: transparent;
+border: 1px solid transparent;
+color: #71717A;
+font-size: 18px;
+line-height: 1;
+padding: 4px 8px;
+}
+
+.remove-row-btn:hover {
+color: #DC2626;
+background: #FEF2F2;
+border-radius: 4px;
+}
+
+/* FOOTER & SUMMARY */
+.invoice-footer {
+margin-top: 32px;
+padding-top: 24px;
+border-top: 1px solid #E4E4E7;
+display: grid;
+grid-template-columns: 1.2fr 0.8fr;
+gap: 32px;
+align-items: start;
+}
+
+.summary-col {
+background: #FAFAFA;
+border: 1px solid #E4E4E7;
+border-radius: 8px;
+padding: 20px;
+}
+
+.summary-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+margin-bottom: 12px;
+font-size: 14px;
+}
+
+.summary-row.input-row input {
+width: 110px;
+text-align: right;
+}
+
+.summary-row.total-row {
+margin-top: 14px;
+padding-top: 14px;
+border-top: 2px solid #E4E4E7;
+margin-bottom: 0;
+font-size: 18px;
+}
+
+.summary-row.total-row strong {
+color: #365314;
+font-variant-numeric: tabular-nums;
+}
+
+::placeholder{
+    color: #71717A;
+    opacity: 1;
+}
+@media (prefers-reduced-motion: reduce){
+*,
+*::before,
+*::after{
+    transition: none !important;
+}
+}
+
+/* TABLET VIEW */
+@media (max-width: 900px) {
+.invoice-sheet {
+margin: 20px 16px 0;
+padding: 28px;
+}
+
+.invoice-footer {
+grid-template-columns: 1fr;
+}
+}
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+.app-toolbar {
+padding: 12px 16px;
+}
+
+.invoice-sheet {
+margin: 14px 10px 0;
+padding: 20px 16px;
+}
+
+.meta-grid,
+.parties-grid {
+grid-template-columns: 1fr;
+gap: 14px;
+}
+
+.items-table thead {
+display: none;
+}
+
+.items-table tr {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+padding: 12px 0;
+border-bottom: 1px solid #E4E4E7;
+}
+
+.items-table td {
+border: none;
+padding: 0;
+width: auto;
+}
+
+.items-table td:first-child {
+grid-column: 1 / -1;
+}
+
+.item-total {
+text-align: left;
+align-self: center;
+}
+
+.items-table td:last-child {
+justify-self: end;
+}
+}
+
+/* PRINT / SAVE AS PDF STYLES */
+@media print {
+body {
+background: #FFFFFF;
+padding: 0;
+}
+
+.no-print {
+display: none !important;
+}
+
+.invoice-sheet {
+margin: 0;
+padding: 0;
+max-width: 100%;
+box-shadow: none;
+border-radius: 0;
+}
+
+input,
+textarea {
+border: none;
+background: transparent;
+padding: 2px 0;
+appearance: none;
+}
+}
+
+input::placeholder,
+textarea::placeholder{
+    color: transparent !important;
+}
